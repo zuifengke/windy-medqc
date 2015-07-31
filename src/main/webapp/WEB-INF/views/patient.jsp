@@ -10,5 +10,8 @@
 	Hello world!  
 </h1>\
 <P>  The time on the server is ${patient.patientName}. </P>
+<p>
+${id}
+</p>
 </body>
 </html>

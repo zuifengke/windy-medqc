@@ -1,4 +1,4 @@
-package com.windy.medqc;
+package com.windy.medqc.web;
 
 import java.text.DateFormat;
 import java.util.Date;

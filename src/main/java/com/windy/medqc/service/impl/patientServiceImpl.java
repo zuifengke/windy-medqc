@@ -28,6 +28,12 @@ public class patientServiceImpl implements IPatientService{
 		// TODO Auto-generated method stub
 		return patientDao.findById(id);
 	}
+
+	@Override
+	public List<Patient> getPatientList() throws Exception {
+		// TODO Auto-generated method stub
+		return patientDao.findAll();
+	}
 	
 
 }

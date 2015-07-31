@@ -1,5 +1,7 @@
 package com.windy.medqc.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.SessionFactory;
@@ -34,4 +36,15 @@ public class PatientDaoImpl  extends HibernateDaoSupport  implements IPatientDao
 		}
 	}
 
+
+	public List findAll() {
+		log.debug("finding all Menu instances");
+		try {
+			String queryString = "from Patient patient";
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
 }

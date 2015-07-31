@@ -7,5 +7,5 @@ import com.windy.medqc.model.Patient;
 
 public interface IPatientService {
 	Patient getPatientById(int id) throws Exception;
-	
+	List<Patient> getPatientList() throws Exception;
 }
