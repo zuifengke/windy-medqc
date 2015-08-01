@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Hello world!  欢迎
 </h1>
 <img alt="" src="resources/img/hx.jpg">
 <P>  The time on the server is ${serverTime}. </P>

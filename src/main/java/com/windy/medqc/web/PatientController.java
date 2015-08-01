@@ -43,7 +43,6 @@ public class PatientController {
 	}
 	
 	@RequestMapping(value = "/getpatientbyid", method = RequestMethod.GET)
-
 	public String getPatientByID(@RequestParam("id") int id,Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", id);
 		System.out.println(id);
@@ -60,5 +59,15 @@ public class PatientController {
 		model.addAttribute("lstPatients", lstPatients );
 		mapUsers.put("lstPatients", lstPatients);
 		return mapUsers;
+	}
+	
+
+	@RequestMapping(value = "/getPatientListPage", method = RequestMethod.GET)
+	public String getPatientListPage(Model model) throws Exception {
+		java.util.List<Patient> lstPatients=this.patientService.getPatientList();
+		Map<String,Object> mapUsers=new HashMap<String, Object> ();
+		model.addAttribute("lstPatients", lstPatients );
+		
+		return "patient/list";
 	}
 }

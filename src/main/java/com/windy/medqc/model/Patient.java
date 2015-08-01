@@ -19,14 +19,17 @@ public class Patient implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1784305125555002252L;
-	private static final String GBKString = null;
+	
 	private Integer medicalID;
 	private String patientID;
 	private String visitID;
 	private String patientName;
 	private String inpNo;
 	private String deptCode;
-	
+	private String deptName;
+	private String diagnosis;
+	private String sex;
+	private String doctorInCharge;
 	@Id
 	@Column(name = "Medical_ID")
 	public Integer getMedicalID() {
@@ -98,5 +101,39 @@ public class Patient implements java.io.Serializable {
 	 */
 	public void setDeptCode(String deptCode) {
 		this.deptCode = deptCode;
+	}
+	@Type( type = "com.windy.medqc.util.GBKString")
+	@Column(name="dept_name")
+	public String getDeptName() {
+		return deptName;
+	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+	@Type(type="com.windy.medqc.util.GBKString")
+	@Column(name="diagnosis")
+	public String getDiagnosis() {
+		return diagnosis;
+	}
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+
+	@Type(type="com.windy.medqc.util.GBKString")
+	@Column(name="sex")
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	@Type(type="com.windy.medqc.util.GBKString")
+	@Column(name="doctor_in_charge")
+	public String getDoctorInCharge() {
+		return doctorInCharge;
+	}
+	public void setDoctorInCharge(String doctorInCharge) {
+		this.doctorInCharge = doctorInCharge;
 	}
 }
