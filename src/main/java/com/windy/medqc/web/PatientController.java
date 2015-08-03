@@ -42,7 +42,7 @@ public class PatientController {
 		this.patientService = patientService;
 	}
 	
-	@RequestMapping(value = "/getpatientbyid", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPatientByID", method = RequestMethod.GET)
 	public String getPatientByID(@RequestParam("id") int id,Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", id);
 		System.out.println(id);

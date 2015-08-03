@@ -36,7 +36,6 @@ public class PatientDaoImpl  extends HibernateDaoSupport  implements IPatientDao
 		}
 	}
 
-
 	public List findAll() {
 		log.debug("finding all Menu instances");
 		try {
