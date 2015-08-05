@@ -1,15 +1,16 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ include file="/WEB-INF/taglibs.jsp"%>
+<%@ page language="java" import="java.util.*"
+	contentType="text/html;charset=gb2312" pageEncoding="GB2312"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+
 <html>
 <head>
-	<title>Home</title>
+<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  æ¬¢è¿Ž
-</h1>
-<img alt="" src="resources/img/hx.jpg">
-<P>  The time on the server is ${serverTime}. </P>
+	<%@ include file="/WEB-INF/taglibs-header.jsp"%>
+	
+Ö÷Ò³
+	<%@ include file="/WEB-INF/taglibs-footer.jsp"%>
 </body>
 </html>
