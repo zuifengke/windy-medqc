@@ -9,4 +9,6 @@ public interface IPatientService {
 	Patient getPatientById(int id) throws Exception;
 	List<Patient> getPatientList() throws Exception;
 	boolean exportToExcel(List<Patient> lstTimeRecords, String fileName);
+	public List<Patient> getPatientsForPage(final int pageSize,final int offset);
+	public Integer getTotalCount();
 }

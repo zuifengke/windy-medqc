@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.List;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,10 +29,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import com.windy.medqc.model.Patient;
 import com.windy.medqc.service.IPatientService;
 import com.windy.medqc.util.DataGridModel;
+import com.windy.medqc.vo.Pagination;
 
 /**
  * Handles requests for the application home page.
@@ -42,7 +42,7 @@ import com.windy.medqc.util.DataGridModel;
 public class PatientController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PatientController.class);
-	
+	private List<Patient> patients;
 	@Autowired
 	private IPatientService patientService;
 	
@@ -54,6 +54,16 @@ public class PatientController {
 		this.patientService = patientService;
 	}
 	
+	private Pagination pagination;
+	
+	public Pagination getPagination() {
+		return pagination;
+	}
+
+	public void setPagination(Pagination pagination) {
+		this.pagination = pagination;
+	}
+
 	@RequestMapping(value = "/getPatientByID", method = RequestMethod.GET)
 	public String getPatientByID(@RequestParam("id") int id,Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", id);
@@ -83,6 +93,32 @@ public class PatientController {
 		return "patient/list";
 	}
 
+	@RequestMapping(value = "/userlist", method = RequestMethod.GET)
+	public String getUserListPage(@RequestParam(value="pageIndex",required=false) Integer pageIndex, Model model) throws Exception {
+		/*java.util.List<Patient> lstPatients=this.patientService.getPatientList();
+		Map<String,Object> mapUsers=new HashMap<String, Object> ();
+		model.addAttribute("lstPatients", lstPatients );*/
+		//System.out.print("pageIndex:"+pageIndex);
+		
+		if(this.pagination==null)
+		{
+			this.pagination=new Pagination();
+			this.pagination.setPageSize(5);
+		}
+		if(pageIndex!=null)
+			this.pagination.setPageIndex(pageIndex);
+		System.out.println("pageIndex:"+this.pagination.getPageIndex());
+		System.out.println("beginPage:"+this.pagination.getBeginPage());
+		System.out.println("endPage:"+this.pagination.getEndPage());
+		this.pagination.setTotalCount(this.patientService.getTotalCount());
+		//System.out.println("pageCount:"+this.pagination.getPageCount());
+		
+		List<Patient> lstPatients = this.patientService.getPatientsForPage(this.pagination.getPageSize(), this.pagination.getOffset());
+		model.addAttribute("lstPatients", lstPatients );
+		model.addAttribute("pagination", pagination );
+		
+		return "patient/userlist";
+	}
 
 	@RequestMapping(value = "/exportToExcel", method = RequestMethod.POST)
 	@ResponseBody

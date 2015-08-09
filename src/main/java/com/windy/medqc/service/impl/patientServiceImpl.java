@@ -59,6 +59,14 @@ public class patientServiceImpl implements IPatientService{
 		}
 		return false;
 	}
-
-
+	public List<Patient> getPatientsForPage(final int pageSize,final int offset) {
+		// TODO Auto-generated method stub
+		
+		return this.patientDao.getPatientsForPage(pageSize,offset);
+	}
+	public Integer getTotalCount()
+	{
+		return this.patientDao.getTotalCount();
+	}
+	
 }
