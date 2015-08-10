@@ -15,7 +15,7 @@ public class HomeControllerTests extends JUnitActionBase{
 	public void testHome() throws Exception   {
 		 MockHttpServletRequest request = new MockHttpServletRequest();    
 	        MockHttpServletResponse response = new MockHttpServletResponse();    
-	        request.setRequestURI("/patient/getpatientbyid");    
+	        request.setRequestURI("/patient/getPatientByID");    
 	        request.setMethod("GET");
 	        request.setParameter("id", "1");
 	        // 执行URI对应的action    

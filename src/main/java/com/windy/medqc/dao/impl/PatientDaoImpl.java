@@ -56,6 +56,7 @@ public class PatientDaoImpl  extends HibernateDaoSupport  implements IPatientDao
 			throw re;
 		}
 	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Patient> getPatientsForPage(final int length,final int offset) {
 		// TODO Auto-generated method stub
 		System.out.print(length+" "+offset);

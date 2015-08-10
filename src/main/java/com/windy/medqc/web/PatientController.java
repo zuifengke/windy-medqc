@@ -103,7 +103,7 @@ public class PatientController {
 		if(this.pagination==null)
 		{
 			this.pagination=new Pagination();
-			this.pagination.setPageSize(5);
+			this.pagination.setPageSize(10);
 		}
 		if(pageIndex!=null)
 			this.pagination.setPageIndex(pageIndex);

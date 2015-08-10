@@ -4,16 +4,13 @@
 <%@ page session="false"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="ctx" value="/medqc" />
+
+<c:set var="ctx_patient_list" value="/medqc/patient/userlist" />
 <html>
 <head>
 <title>Detail Admin - Home</title>
 <!-- bootstrap -->
 
-<!-- this page specific styles -->
-<link rel="stylesheet"
-	href="${ctx}/resources/css/compiled/user-list.css" type="text/css"
-	media="screen" />
 
 <!-- open sans font -->
 <link
@@ -56,8 +53,8 @@
 					<h3>病人列表</h3>
 					<div class="span10 pull-right">
 						<input type="text" class="span5 search"
-							placeholder="Type a user's name..." />
-
+							placeholder="Type a user's name..." /> <a class="btn-flat small"
+							onClick="exportToExcel()">导出excel</a>
 						<!-- custom popup filter -->
 						<!-- styles are located in css/elements.css -->
 						<!-- script that enables this dropdown is located in js/theme.js -->
@@ -75,6 +72,7 @@
 									<div class="form">
 										<input type="text" /> <a class="btn-flat small">Add
 											filter</a>
+
 									</div>
 								</div>
 							</div>
@@ -130,15 +128,26 @@
 				<div class="pagination pull-right">
 
 					<ul>
-						
-					    <li><a
-								href="${ctx}/patient/userlist?pageIndex=${pagination.pageIndex-1}">
-									&#8249;</a></li>
-							
-						
+
+						<li> 
+							<c:choose>
+
+									<c:when test="${(pagination.pageIndex)>1}">
+											<a
+									href="${ctx_patient_list}?pageIndex=${pagination.pageIndex-1}">
+									&#8249;</a>
+									</c:when>
+
+									<c:otherwise>
+										<a href="${ctx_patient_list}?pageIndex=1"> &#8249;</a>
+									</c:otherwise>
+								</c:choose>
+					   </li>
+
 
 						<c:if test="${(pagination.pageIndex-5)>1}">
-							<li><a href="${ctx}/patient/userlist?pageIndex=1"> <c:out value=".." />
+							<li><a href="${ctx_patient_list}?pageIndex=1"> <c:out
+										value=".." />
 							</a></li>
 						</c:if>
 
@@ -147,35 +156,47 @@
 
 
 							<li><c:choose>
-									
+
 									<c:when test="${i==pagination.pageIndex}">
-										<a class="active"
-											href="${ctx}/patient/userlist?pageIndex=1">
+										<a class="active" href="${ctx_patient_list}?pageIndex=1">
 											<c:out value="${i}" />
 										</a>
 									</c:when>
 
 									<c:otherwise>
-										<a href="${ctx}/patient/userlist?pageIndex=${i}"> ${i}
-										</a>
+										<a href="${ctx_patient_list}?pageIndex=${i}"> ${i} </a>
 									</c:otherwise>
 								</c:choose></li>
 						</c:forEach>
 
 						<c:if test="${pagination.pageCount>(pagination.pageIndex+5) }">
-							<li><a href="${ctx}/patient/userlist?pageIndex=${pagination.pageCount-1}"> <c:out value=".." />
+							<li><a
+								href="${ctx_patient_list}?pageIndex=${pagination.pageCount}">
+									<c:out value=".." />
 							</a></li>
 						</c:if>
-							
-							<li><a
-								href="${ctx}/patient/userlist?pageIndex=${pagination.pageIndex+1}">
-									&#8250;</a></li>
+
 						
+<li> 
+							<c:choose>
+
+									<c:when test="${pagination.pageIndex<pagination.endPage}">
+											<a
+							href="${ctx_patient_list}?pageIndex=${pagination.pageIndex+1}">
+								&#8250;</a>
+									</c:when>
+
+									<c:otherwise>
+										<a href="${ctx_patient_list}?pageIndex=${pagination.endPage}"> &#8250;</a>
+									</c:otherwise>
+								</c:choose>
+					   </li>
+
 						<%-- <span>
 						共 <c:out value="${pagination.totalCount}" /> 条记录
 						</span> --%>
 					</ul>
-					
+
 				</div>
 				<!-- end users table -->
 			</div>
@@ -183,6 +204,27 @@
 	</div>
 	<!-- end main container -->
 
+	<!-- this page specific styles -->
+	<link rel="stylesheet"
+		href="${ctx}/resources/css/compiled/user-list.css" type="text/css"
+		media="screen" />
 
+	<script type="text/javascript">
+		//导出到excel
+		function exportToExcel() {
+
+			$.post("${ctx}/patient/exportToExcel", {}, function(data) {
+
+				var result = eval(data);
+				if (result.message != "导出成功") {
+					alert(result);
+					return;
+				}
+
+				window.open("${ctx}/patient/download?sheetName=" + result.url);
+
+			});
+		}
+	</script>
 </body>
 </html>

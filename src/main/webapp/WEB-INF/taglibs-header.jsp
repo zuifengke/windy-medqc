@@ -40,7 +40,7 @@
                 <span class="icon-bar"></span>
             </button>
             
-            <a class="brand" href="index.html"><img src="${ctx}/resources/img/logo.png" /></a>
+            <a class="brand" href="index.html"><img src="${ctx }/resources/img/logo.png" /></a>
 
             <ul class="nav pull-right">                
                 <li class="hidden-phone">
@@ -166,9 +166,9 @@
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="index.html">
+                <a href="${ctx}">
                     <i class="icon-home"></i>
-                    <span>Home</span>
+                    <span>Ê×Ò³</span>
                 </a>
             </li>            
             <li>

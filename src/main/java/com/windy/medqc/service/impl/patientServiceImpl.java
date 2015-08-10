@@ -17,6 +17,9 @@ import com.windy.medqc.util.ExportExcel;
 
 @Service("patientService")
 public class patientServiceImpl implements IPatientService{
+	/*@Autowired
+	private IPatientDao patientDao;
+	*/
 	@Autowired
 	private IPatientDao patientDao;
 	
