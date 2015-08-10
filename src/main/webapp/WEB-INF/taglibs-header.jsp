@@ -161,7 +161,7 @@
    <!-- sidebar -->
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            <li class="active">
+            <li >
                 <div class="pointer">
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
@@ -183,7 +183,7 @@
                     <span>Users</span>
                     <i class="icon-chevron-down"></i>
                 </a>
-                <ul class="submenu">
+                <ul  class="submenu active">
                     <li><a href="${ctx}/patient/userlist">User list</a></li>
                     <li><a href="new-user.html">New user form</a></li>
                     <li><a href="user-profile.html">User profile</a></li>

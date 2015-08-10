@@ -26,7 +26,7 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.windy.medqc" />
-	<!-- <beans:bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	<beans:bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<beans:property name="interceptors">
 			<beans:list>
 				<beans:bean class="com.windy.medqc.util.MyHandlerInterceptor" />
@@ -39,7 +39,7 @@
 		<beans:property name="webBindingInitializer">
 			<beans:bean class="com.windy.medqc.util.MyWebBinding" />
 		</beans:property>
-		配置一下对json数据的转换
+		<!-- 配置一下对json数据的转换 -->
 		<beans:property name="messageConverters">
 			<beans:list>
 				<beans:bean
@@ -47,5 +47,5 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
- -->
+
 </beans:beans>
