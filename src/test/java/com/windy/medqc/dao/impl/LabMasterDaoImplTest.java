@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
+import com.windy.medqc.dao.ILabMasterDao;
 import com.windy.medqc.dao.IPatientDao;
 import com.windy.medqc.model.LabMaster;
 import com.windy.medqc.service.IPatientService;
@@ -25,7 +26,7 @@ import com.windy.medqc.util.DataSourceMap;
 @TransactionConfiguration(defaultRollback = false,transactionManager="txManager")
 public class LabMasterDaoImplTest {
 	@Autowired
-	private LabMasterDaoImpl labMasterDao;
+	private ILabMasterDao labMasterDao;
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -34,7 +35,7 @@ public class LabMasterDaoImplTest {
 	public void testFindAll() {
 		CustomerContextHolder.setCustomerType(DataSourceMap.meddocString);//设置数据源 
 		List<LabMaster> lstLabMasters=labMasterDao.findAll();
-		
+		assertTrue(lstLabMasters!=null);
 	}
 
 }
