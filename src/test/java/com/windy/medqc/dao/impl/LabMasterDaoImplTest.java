@@ -33,9 +33,16 @@ public class LabMasterDaoImplTest {
 
 	@Test
 	public void testFindAll() {
-		CustomerContextHolder.setCustomerType(DataSourceMap.meddocString);//设置数据源 
+		 
 		List<LabMaster> lstLabMasters=labMasterDao.findAll();
 		assertTrue(lstLabMasters!=null);
 	}
-
+	@Test
+	public void testFindAllByPatient() {
+		CustomerContextHolder.setCustomerType(DataSourceMap.meddocString);
+		 String patientIDString="Y100000003";
+		 int visitID=1;
+		List<LabMaster> lstLabMasters=labMasterDao.findAllByPatient(patientIDString,visitID);
+		assertTrue(lstLabMasters!=null);
+	}
 }

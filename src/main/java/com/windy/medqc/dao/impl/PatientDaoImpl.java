@@ -17,6 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.windy.medqc.dao.IPatientDao;
 import com.windy.medqc.model.Patient;
+import com.windy.medqc.util.CustomerContextHolder;
+import com.windy.medqc.util.DataSourceMap;
 
 @Repository("patientDao")
 public class PatientDaoImpl  extends HibernateDaoSupport  implements IPatientDao {
@@ -27,9 +29,12 @@ public class PatientDaoImpl  extends HibernateDaoSupport  implements IPatientDao
         super.setSessionFactory(sessionFactory);  
     }  
 	protected void initDao() {
+		log.info("initDao");
+		
 	}
 	@Override
 	public Patient findById(Integer id) throws Exception {
+		CustomerContextHolder.setCustomerType(DataSourceMap.medqcString);
 		log.debug("getting TUser instance with id: " + id);
 		try {
 			Patient instance = (Patient) getHibernateTemplate().get(
@@ -42,11 +47,13 @@ public class PatientDaoImpl  extends HibernateDaoSupport  implements IPatientDao
 	}
 
 	public Integer getTotalCount() {
+		CustomerContextHolder.setCustomerType(DataSourceMap.medqcString);
 		List list = getHibernateTemplate().find("select count(*) from Patient"); 
 		Number num = (Number) list.get(0); 
 		return num.intValue(); 
 	}
 	public List findAll() {
+	
 		log.debug("finding all Menu instances");
 		try {
 			String queryString = "from Patient patient";
@@ -58,6 +65,7 @@ public class PatientDaoImpl  extends HibernateDaoSupport  implements IPatientDao
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Patient> getPatientsForPage(final int length,final int offset) {
+		CustomerContextHolder.setCustomerType(DataSourceMap.medqcString);
 		// TODO Auto-generated method stub
 		System.out.print(length+" "+offset);
 		List<Patient> list = getHibernateTemplate().executeFind(new HibernateCallback() { 
