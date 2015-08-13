@@ -183,9 +183,9 @@
                     <span>Users</span>
                     <i class="icon-chevron-down"></i>
                 </a>
-                <ul  class="submenu active">
-                    <li><a href="${ctx}/patient/userlist">User list</a></li>
-                    <li><a href="new-user.html">New user form</a></li>
+                <ul  class="submenu ">
+                    <li><a href="${ctx}/patient/userlist">病人列表</a></li>
+                    <li><a href="${ctx}/labmaster/list?patientID=Y100000003&visitID=1">检验报告</a></li>
                     <li><a href="user-profile.html">User profile</a></li>
                 </ul>
             </li>

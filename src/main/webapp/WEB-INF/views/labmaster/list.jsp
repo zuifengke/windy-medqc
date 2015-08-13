@@ -93,31 +93,34 @@
 								<th class="span3 sortable"><span class="line"></span> 病人ID号
 								</th>
 								<th class="span2 sortable"><span class="line"></span>就诊次</th>
-								<th class="span3 sortable "><span class="line"></span>病人姓名
+								<th class="span3 sortable "><span class="line"></span>测试号
 								</th>
-								<th class="span3 sortable"><span class="line"></span>科室名称</th>
-								<th class="span3 sortable "><span class="line"></span> 性别</th>
-								<th class="span3 sortable "><span class="line"></span>责任医生</th>
-								<th class="span2 sortable "><span class="line"></span>诊断</th>
-								<th class="span2 sortable "><span class="line"></span>操作</th>
+								<th class="span3 sortable"><span class="line"></span>项目</th>
+								<th class="span3 sortable "><span class="line"></span>标本</th>
+								<th class="span3 sortable "><span class="line"></span>申请时间</th>
+								<th class="span2 sortable "><span class="line"></span>申请医生</th>
+								<th class="span2 sortable "><span class="line"></span>结果</th>
+								<th class="span2 sortable "><span class="line"></span>报告时间</th>
+								<th class="span2 sortable "><span class="line"></span>报告医生</th>
+
 							</tr>
 						</thead>
 
 						<tbody>
 							<!-- row -->
-
-
-							<c:forEach items="${lstPatients}" var="p">
+							<c:forEach items="${labMasters}" var="p">
 								<tr>
 
 									<td><c:out value="${p.patientID}" /></td>
 									<td><c:out value="${p.visitID}" /></td>
-									<td><c:out value="${p.patientName}" /></td>
-									<td><c:out value="${p.deptName}" /></td>
-									<td><c:out value="${p.sex}" /></td>
-									<td><c:out value="${p.doctorInCharge}" /></td>
-									<td style="width: 250px;"><c:out value="${p.diagnosis}" /></td>
-									<td><a href="${ctx}/labmaster/list?patientID=${p.patientID}&visitID=${p.visitID}">检验报告</a></td>
+									<td><c:out value="${p.testID}" /></td>
+									<td><c:out value="${p.subject}" /></td>
+									<td><c:out value="${p.specimen}" /></td>
+									<td><c:out value="${p.requestTime}" /></td>
+									<td><c:out value="${p.requestDoctor}" /></td>
+									<td><c:out value="${p.resultStatus}" /></td>
+									<td><c:out value="${p.reportTime}" /></td>
+									<td><c:out value="${p.reportDoctor}" /></td>
 								</tr>
 							</c:forEach>
 
@@ -126,79 +129,7 @@
 
 					</table>
 				</div>
-				<div class="pagination pull-right">
-
-					<ul>
-
-						<li> 
-							<c:choose>
-
-									<c:when test="${(pagination.pageIndex)>1}">
-											<a
-									href="${ctx_patient_list}?pageIndex=${pagination.pageIndex-1}">
-									&#8249;</a>
-									</c:when>
-
-									<c:otherwise>
-										<a href="${ctx_patient_list}?pageIndex=1"> &#8249;</a>
-									</c:otherwise>
-								</c:choose>
-					   </li>
-
-
-						<c:if test="${(pagination.pageIndex-5)>1}">
-							<li><a href="${ctx_patient_list}?pageIndex=1"> <c:out
-										value=".." />
-							</a></li>
-						</c:if>
-
-						<c:forEach var="i" begin="${pagination.beginPage}"
-							end="${pagination.endPage}">
-
-
-							<li><c:choose>
-
-									<c:when test="${i==pagination.pageIndex}">
-										<a class="active" href="${ctx_patient_list}?pageIndex=${i}">
-											<c:out value="${i}" />
-										</a>
-									</c:when>
-
-									<c:otherwise>
-										<a href="${ctx_patient_list}?pageIndex=${i}"> ${i} </a>
-									</c:otherwise>
-								</c:choose></li>
-						</c:forEach>
-
-						<c:if test="${pagination.pageCount>(pagination.pageIndex+5) }">
-							<li><a
-								href="${ctx_patient_list}?pageIndex=${pagination.pageCount}">
-									<c:out value=".." />
-							</a></li>
-						</c:if>
-
-						
-<li> 
-							<c:choose>
-
-									<c:when test="${pagination.pageIndex<pagination.endPage}">
-											<a
-							href="${ctx_patient_list}?pageIndex=${pagination.pageIndex+1}">
-								&#8250;</a>
-									</c:when>
-
-									<c:otherwise>
-										<a href="${ctx_patient_list}?pageIndex=${pagination.endPage}"> &#8250;</a>
-									</c:otherwise>
-								</c:choose>
-					   </li>
-
-						<%-- <span>
-						共 <c:out value="${pagination.totalCount}" /> 条记录
-						</span> --%>
-					</ul>
-
-				</div>
+			
 				<!-- end users table -->
 			</div>
 		</div>
