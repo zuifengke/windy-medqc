@@ -23,13 +23,7 @@ public class patientServiceImpl implements IPatientService{
 	@Autowired
 	private IPatientDao patientDao;
 	
-	public IPatientDao getPatientDao() {
-		return patientDao;
-	}
-
-	public void setPatientDao(IPatientDao patientDao) {
-		this.patientDao = patientDao;
-	}
+	
 
 	@Override
 	public Patient getPatientById(int id) throws Exception {

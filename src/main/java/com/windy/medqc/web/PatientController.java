@@ -43,13 +43,13 @@ public class PatientController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PatientController.class);
 	private List<Patient> patients;
-	@Autowired
+	
 	private IPatientService patientService;
 	
 	public IPatientService getPatientService() {
 		return patientService;
 	}
-
+	@Autowired
 	public void setPatientService(IPatientService patientService) {
 		this.patientService = patientService;
 	}

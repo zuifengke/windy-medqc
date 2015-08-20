@@ -33,6 +33,7 @@
        <property name="targetDataSources">  
           <map key-type="java.lang.String">  
              <entry key="meddoc" value-ref="dataSource_meddoc"/>  
+             <entry key="medqc" value-ref="dataSource_medqc"/> 
           </map>  
        </property>  
        <property name="defaultTargetDataSource" ref="dataSource_medqc"/>  
