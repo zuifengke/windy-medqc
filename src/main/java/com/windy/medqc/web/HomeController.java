@@ -39,6 +39,18 @@ public class HomeController {
 		//return "home";
 		return "index";
 	}
-	
+	@RequestMapping(value = "/websocket", method = RequestMethod.GET)
+	public String websocket(Locale locale, Model model) throws Exception {
+		logger.info("Welcome websocket! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		//return "home";
+		return "websocket";
+	}
 	
 }

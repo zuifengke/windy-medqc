@@ -53,7 +53,7 @@ public class GBKString  implements UserType{
         } else {   
             String val = (String)value;   
             try {   
-            	val = new String(val.getBytes("GBK"), "ISO_8859_1");  
+            	val = new String(val.getBytes("GBK"), "ISO-8859-1");  
             } catch (UnsupportedEncodingException e) {   
                 throw new HibernateException(e.getMessage());   
             }   
