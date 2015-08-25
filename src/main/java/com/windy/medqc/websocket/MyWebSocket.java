@@ -1,4 +1,4 @@
-package com.windy.medqc.web;
+package com.windy.medqc.websocket;
 
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
